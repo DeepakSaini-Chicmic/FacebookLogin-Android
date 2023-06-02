@@ -5,7 +5,7 @@ const { ccclass, property } = _decorator;
 export class Main extends Component {
   start() {}
 
-  fbLogin() {
+  facebookLogin() {
     console.log("Native Call");
     if (sys.os === sys.OS.ANDROID) {
       native.reflection.callStaticMethod(
@@ -13,6 +13,23 @@ export class Main extends Component {
         "fbLoginCallFromCocos",
         "()V"
       );
+      console.log("Facebook Login Call Successful");
+    } else {
+      console.log("Run App in Android");
+    }
+  }
+
+  googleLogin() {
+    console.log("Google Login Native Call");
+    if (sys.os === sys.OS.ANDROID) {
+      native.reflection.callStaticMethod(
+        "com/cocos/game/AppActivity",
+        "googleLoginFromCocos",
+        "()V"
+      );
+      console.log("Google Login Call SuccessFul");
+    } else {
+      console.log("Run App in Android");
     }
   }
 

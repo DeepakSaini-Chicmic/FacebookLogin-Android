@@ -40,11 +40,20 @@ import com.cocos.service.SDKWrapper;
 import com.cocos.lib.CocosActivity;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 import java.util.Arrays;
 
 public class AppActivity extends CocosActivity {
+    private static final int RC_SIGN_IN = 1000;
     CallbackManager callbackManager;
+    GoogleSignInOptions gso;
+    GoogleSignInClient mGoogleSignInClient;
     private static AppActivity appActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,41 +61,33 @@ public class AppActivity extends CocosActivity {
         appActivity = this;
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.shared().init(this);
+
+        //FOR FACEBOOK LOGIN
         callbackManager = CallbackManager.Factory.create();
         Log.d("AppActivity", "onCreate: Created");
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        CocosHelper.runOnGameThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("AppActivity", "onSuccess: Call recieved and sending back to cocos");
-                                CocosJavascriptJavaBridge.evalString("cc.find('Canvas').getComponent('Main').changeScene()");
-                                Log.d("AppActivity", "onSuccess: Login Successful");
-                            }
-                        });
-
+                        changeScene();
                     }
 
                     @Override
                     public void onCancel() {
-                        Log.d("AppActivity", "onSuccess: Login Cancelled");// App code
+                        Log.d("AppActivity", "onSuccess: Login Cancelled");
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
-                        CocosHelper.runOnGameThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("AppActivity", "onSuccess: Call recieved and sending back to cocos");
-                                CocosJavascriptJavaBridge.evalString("cc.find('Canvas').getComponent('Main').errorWhileLogging()");
-                                Log.d("AppActivity", "onSuccess: Login Error! Login Not Done");
-                            }
-                        });
-                        // App code
+                        errorCaught();
                     }
                 });
+
+        //FOR GOOGLE LOGIN
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
     @Override
     protected void onResume() {
@@ -111,12 +112,31 @@ public class AppActivity extends CocosActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d("AppActivity", "onActivityResult: On return Callback");
-        callbackManager.onActivityResult(requestCode, resultCode, intent);
-        super.onActivityResult(requestCode, resultCode, intent);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("AppActivity", "onActivityResult() returned: " + resultCode);
+        if(requestCode == RC_SIGN_IN){
+        Log.d("AppActivity", "onActivityResult: For Google Login Callback");
+        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+        handleSignInResult(task);
+    }
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            Log.d("AppActivity", "handleSignInResult: Try block 1");
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Log.d("AppActivity", "handleSignInResult: Try block 2");
+            // Signed in successfully, show authenticated UI
+            afterGoogleLogin();
+            Log.d("AppActivity", "handleSignInResult: Login Successful");
+        } catch (ApiException e) {
+            errorCaught();
+            Log.w("AppActivity", "signInResult:failed code=" + e.getStatusCode());
+        }
+    }
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -163,6 +183,7 @@ public class AppActivity extends CocosActivity {
     protected void onStart() {
         SDKWrapper.shared().onStart();
         super.onStart();
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
     }
 
     @Override
@@ -172,9 +193,44 @@ public class AppActivity extends CocosActivity {
     }
     
     public static void fbLoginCallFromCocos(){
-
-        Log.d("AppActivity", "fbLoginCallFromCocos: Call Recieved From Cocos");
+        Log.d("AppActivity", "fbLoginCallFromCocos: Call Received for Facebook Login From Cocos");
         LoginManager.getInstance().logInWithReadPermissions(appActivity, Arrays.asList("public_profile"));
+    }
+
+    public static void googleLoginFromCocos(){
+        Log.d("AppActivity", "googleLoginFromCocos: Call Received for Google Login From Cocos");
+        appActivity.signIn();
+    }
+
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    void afterGoogleLogin(){
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(appActivity);
+        Log.d("AppActivity", "afterGoogleLogin: Call cocos function");
+        changeScene();
+    }
+    void changeScene(){
+        CocosHelper.runOnGameThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("AppActivity", "onSuccess: Call received and sending back to cocos");
+                CocosJavascriptJavaBridge.evalString("cc.find('Canvas').getComponent('Main').changeScene()");
+                Log.d("AppActivity", "onSuccess: Login Successful");
+            }
+        });
+    }
+    void errorCaught(){
+        CocosHelper.runOnGameThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("AppActivity", "onSuccess: Call received and sending back to cocos");
+                CocosJavascriptJavaBridge.evalString("cc.find('Canvas').getComponent('Main').errorWhileLogging()");
+                Log.d("AppActivity", "onSuccess: Login Error! Login Not Done");
+            }
+        });
     }
 
 
