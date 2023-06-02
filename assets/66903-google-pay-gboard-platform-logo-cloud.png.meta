@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.25",
+  "importer": "image",
+  "imported": true,
+  "uuid": "43f88110-da07-4cbb-9b3b-0ad99c169dd0",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@6c48a",
+      "displayName": "66903-google-pay-gboard-platform-logo-cloud",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "43f88110-da07-4cbb-9b3b-0ad99c169dd0",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@f9941",
+      "displayName": "66903-google-pay-gboard-platform-logo-cloud",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0.5,
+        "offsetY": -0.5,
+        "trimX": 180,
+        "trimY": 144,
+        "width": 1375,
+        "height": 1375,
+        "rawWidth": 1734,
+        "rawHeight": 1662,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -687.5,
+            -687.5,
+            0,
+            687.5,
+            -687.5,
+            0,
+            -687.5,
+            687.5,
+            0,
+            687.5,
+            687.5,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            180,
+            1518,
+            1555,
+            1518,
+            180,
+            143,
+            1555,
+            143
+          ],
+          "nuv": [
+            0.10380622837370242,
+            0.08604091456077016,
+            0.8967704728950404,
+            0.08604091456077016,
+            0.10380622837370242,
+            0.9133574007220217,
+            0.8967704728950404,
+            0.9133574007220217
+          ],
+          "minPos": [
+            -687.5,
+            -687.5,
+            0
+          ],
+          "maxPos": [
+            687.5,
+            687.5,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": true,
+    "hasAlpha": true,
+    "redirect": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@f9941"
+  }
+}

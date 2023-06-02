@@ -118,7 +118,7 @@ public class AppActivity extends CocosActivity {
         Log.d("AppActivity", "onActivityResult: For Google Login Callback");
         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
         handleSignInResult(task);
-    }
+        }
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
         super.onActivityResult(requestCode, resultCode, data);

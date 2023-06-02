@@ -28,6 +28,8 @@ export class Main extends Component {
         "()V"
       );
       console.log("Google Login Call SuccessFul");
+    } else if (sys.os === sys.OS.IOS) {
+      // native.reflection.callStaticMethod("AppDelegate","")
     } else {
       console.log("Run App in Android");
     }
