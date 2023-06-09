@@ -199,10 +199,14 @@ public class AppActivity extends CocosActivity {
 
     public static void googleLoginFromCocos(){
         Log.d("AppActivity", "googleLoginFromCocos: Call Received for Google Login From Cocos");
-        appActivity.signIn();
+        appActivity.googleSignIn();
     }
 
-    private void signIn() {
+    public static void twitterLoginFromCocos(){
+        Log.d("AppActivity", "twitterLoginFromCocos: Call Received for Twitter Login From Cocos");
+
+    }
+    private void googleSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }

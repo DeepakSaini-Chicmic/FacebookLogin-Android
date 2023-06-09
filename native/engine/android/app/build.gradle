@@ -1,7 +1,7 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 RES_PATH = RES_PATH.replace("\\", "/")
 COCOS_ENGINE_PATH = COCOS_ENGINE_PATH.replace("\\", "/")
 
@@ -102,11 +102,16 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-auth:20.5.0'
-    implementation 'com.facebook.android:facebook-login:latest.release'
     implementation fileTree(dir: '../libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: "${COCOS_ENGINE_PATH}/cocos/platform/android/java/libs", include: ['*.jar'])
     implementation project(':libservice')
     implementation project(':libcocos')
+    //GOOGLE
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+    //FACEBOOK
+    implementation 'com.facebook.android:facebook-login:latest.release'
+    //TWITTER
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
 }
