@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "43f88110-da07-4cbb-9b3b-0ad99c169dd0",
+  "uuid": "b87898ca-52d0-4f39-a96e-5a88ad7f0d55",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@6c48a",
-      "displayName": "66903-google-pay-gboard-platform-logo-cloud",
+      "uuid": "b87898ca-52d0-4f39-a96e-5a88ad7f0d55@6c48a",
+      "displayName": "4qDFr",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "43f88110-da07-4cbb-9b3b-0ad99c169dd0",
+        "imageUuidOrDatabaseUri": "b87898ca-52d0-4f39-a96e-5a88ad7f0d55",
         "isUuid": true,
         "visible": false,
         "minfilter": "linear",
@@ -34,8 +34,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@f9941",
-      "displayName": "66903-google-pay-gboard-platform-logo-cloud",
+      "uuid": "b87898ca-52d0-4f39-a96e-5a88ad7f0d55@f9941",
+      "displayName": "4qDFr",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -43,13 +43,13 @@
         "trimThreshold": 1,
         "rotated": false,
         "offsetX": 0.5,
-        "offsetY": -0.5,
-        "trimX": 180,
-        "trimY": 144,
-        "width": 1375,
-        "height": 1375,
-        "rawWidth": 1734,
-        "rawHeight": 1662,
+        "offsetY": -1.5,
+        "trimX": 44,
+        "trimY": 76,
+        "width": 713,
+        "height": 151,
+        "rawWidth": 800,
+        "rawHeight": 300,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
@@ -61,17 +61,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -687.5,
-            -687.5,
+            -356.5,
+            -75.5,
             0,
-            687.5,
-            -687.5,
+            356.5,
+            -75.5,
             0,
-            -687.5,
-            687.5,
+            -356.5,
+            75.5,
             0,
-            687.5,
-            687.5,
+            356.5,
+            75.5,
             0
           ],
           "indexes": [
@@ -83,38 +83,38 @@
             3
           ],
           "uv": [
-            180,
-            1518,
-            1555,
-            1518,
-            180,
-            143,
-            1555,
-            143
+            44,
+            224,
+            757,
+            224,
+            44,
+            73,
+            757,
+            73
           ],
           "nuv": [
-            0.10380622837370242,
-            0.08604091456077016,
-            0.8967704728950404,
-            0.08604091456077016,
-            0.10380622837370242,
-            0.9133574007220217,
-            0.8967704728950404,
-            0.9133574007220217
+            0.055,
+            0.24333333333333335,
+            0.94625,
+            0.24333333333333335,
+            0.055,
+            0.7466666666666667,
+            0.94625,
+            0.7466666666666667
           ],
           "minPos": [
-            -687.5,
-            -687.5,
+            -356.5,
+            -75.5,
             0
           ],
           "maxPos": [
-            687.5,
-            687.5,
+            356.5,
+            75.5,
             0
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@6c48a",
+        "imageUuidOrDatabaseUri": "b87898ca-52d0-4f39-a96e-5a88ad7f0d55@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.11",
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "43f88110-da07-4cbb-9b3b-0ad99c169dd0@f9941"
+    "redirect": "b87898ca-52d0-4f39-a96e-5a88ad7f0d55@f9941"
   }
 }
